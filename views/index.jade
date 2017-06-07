@@ -1,0 +1,212 @@
+extends layout
+block content
+  section#intro.intro
+    .intro-content
+      .container
+        .row
+          .col-lg-6
+            .wow.fadeInDown(data-wow-offset='0', data-wow-delay='0.1s')
+              h2.h-ultra SuperFamilia
+            .wow.fadeInUp(data-wow-offset='0', data-wow-delay='0.5s')
+              h6.h-light(style='color:black;')
+                | Contamos con más de 20 años de experiencia y con un personal altamente calificado para asesorarles y brindar el mejor servicio.
+            .well.well-trans
+              .wow.fadeInRight(data-wow-delay='0.1s')
+                ul.lead-list
+                  li
+                    span.fa.fa-check.fa-2x.icon-success
+                    span.list
+                      strong Entregando lo mejor para la salud de tu familia
+                      br
+                  li
+                    span.fa.fa-check.fa-2x.icon-success
+                    span.list
+                      strong Los mejores precios
+                      br
+                  li
+                    span.fa.fa-check.fa-2x.icon-success
+                    span.list
+                      strong Mas de 400 sucursales a nivel nacional
+                      br
+                  li
+                    span.fa.fa-check.fa-2x.icon-success
+                    span.list
+                      strong Contamos con grandes descuentos
+                      br
+                p.text-right.wow.bounceIn(data-wow-delay='0.4s')
+                  //
+                    <a href="#" class="btn btn-skin btn-lg">Learn more <i class="fa fa-angle-right"></i></a>
+          .col-lg-6
+            .wow.fadeInUp(data-wow-duration='2s', data-wow-delay='0.2s')
+              img.img-responsive(src='img/dummy/img-1.png', alt='')
+
+  section#service.home-section.paddingtop-100
+    .container
+      .row
+        .col-sm-3.col-md-3
+          .wow.fadeInUp(data-wow-delay='0.2s')
+            .box.text-center
+              i.fa.fa-check.fa-3x.circled.bg-skin
+              h4.h-bold Compras Online
+              p
+                | Te brindamos fecilidades y modalidades de pago , Contamos con alianzas estrategicas con empresas del sector financiero que garantizan transparencia y eficacia a las transacciones
+        .col-sm-3.col-md-3
+          .wow.fadeInUp(data-wow-delay='0.2s')
+            .box.text-center
+              i.fa.fa-list-alt.fa-3x.circled.bg-skin
+              h4.h-bold Servicio a Domicilio
+              p
+                | En SuperFamilia nos gusta ofrecerte siempre un servicio eficiente , puedes llamar al numero de tu ciudad y hacer tu pedido ,lo llevaremos a la puerta de tu casa en el menor tiempo posible
+        .col-sm-3.col-md-3
+          .wow.fadeInUp(data-wow-delay='0.2s')
+            .box.text-center
+              i.fa.fa-user-md.fa-3x.circled.bg-skin
+              h4.h-bold Atención de profesionales Farmacéuticos
+              p
+                | Dispensación de medicamentos supervisada por un farmacéutico, quien te asesora sobre su correcto uso. Ofrecemos también: toma de Tensión Arterial y elaboración de Fórmulas Magistrales.
+        .col-sm-3.col-md-3
+          .wow.fadeInUp(data-wow-delay='0.2s')
+            .box.text-center
+              i.fa.fa-hospital-o.fa-3x.circled.bg-skin
+              h4.h-bold Cuidamos Tu Salud
+              p
+                | Servicio de Atención Farmacéutica destinado a pacientes con Hipertensión y Diabetes para brindarles apoyo personalizado en el manejo de la enfermedad y el seguimiento de la terapia indicada por el médico.
+
+  section#partner.home-section.paddingbot-60
+    .container
+      .row
+        .col-sm-6.col-md-3
+          .partner
+            a(href='javascript:void(0)')
+              img(src='img/dummy/partner-1.jpg', alt='')
+        .col-sm-6.col-md-3
+          .partner
+            a(href='javascript:void(0)')
+              img(src='img/dummy/partner-2.jpg', alt='')
+        .col-sm-6.col-md-3
+          .partner
+            a(href='javascript:void(0)')
+              img(src='img/dummy/partner-3.jpg', alt='')
+        .col-sm-6.col-md-3
+          .partner
+            a(href='javascript:void(0)')
+              img(src='img/dummy/partner-4.jpg', alt='')
+   // /Section: intro
+  section#testimonial.home-section.paddingbot-60.parallax(data-stellar-background-ratio="0.5")
+  .carousel-reviews.broun-block
+    .container
+      .row
+        #carousel-reviews.carousel.slide(data-ride="carousel")
+          .carousel-inner
+            .item.active
+              .col-md-4.col-sm-6
+                .block-text.rel.zmin
+                  a(title="", href="#") VICHY
+                  |                   
+                          
+                  p
+                    | En el año 2005, Vichy se situó como la primera casa dermocosmética europea en farmacia. Hoy, está disponible en casi 60 países y posee una gama completa de tratamientos formulados a partir de grandes activos de salud, junto a la investigación farmacológica y a su mítica agua termal de propiedades calmantes y cicatrizantes.
+                  |                   
+                  ins.ab.zmin.sprite.sprite-i-triangle.block
+                |               
+                .person-text.rel.text-light
+                  img.person.img-circle(src="img/testimonials/vichy.jpg", alt="")
+                  |                 
+                  a(title="", href="#") Anna
+                  |                 
+                  span Chicago, Illinois
+              |                   
+              .col-md-4.col-sm-6.hidden-xs
+                .block-text.rel.zmin
+                  a(title="", href="#") LA ROCHER POSAY
+                  |                  
+                                     
+                  p
+                    | en 1975, los Laboratorios La Roche-Posay con un claro compromiso: ofrecer una mejor vida a las pieles sensibles. Esta es la motivación que se esconde detrás de cada investigación, descubrimiento e innovación, que se materializa en productos de avanzada tecnología avalados por dermatólogos de todo el mundo
+                  |                   
+                  ins.ab.zmin.sprite.sprite-i-triangle.block
+                |               
+                .person-text.rel.text-light
+                  img.person.img-circle(src="img/testimonials/la-roche-posay.jpg", alt="")
+                  |                 
+                  a(title="", href="#") Matthew G
+                  |                 
+                  span San Antonio, Texas
+              |             
+              .col-md-4.col-sm-6.hidden-sm.hidden-xs
+                .block-text.rel.zmin
+                  a(title="", href="#") VIPSKIN
+                  |                 
+                                     
+                  p
+                    |nace de la inquietud de un grupo de dermatólogos en la búsqueda de tratamientos con sólida base científica y que aunente efectividad y una correcta relación calidad precio.  La filosofía de IDP se ha prescindido de lo superfluo, prefiriendo invertir en la óptima calidad de las materias primas empleadas frente a un packaging lujoso.
+                  |                   
+                  ins.ab.zmin.sprite.sprite-i-triangle.block
+                |               
+                .person-text.rel.text-light
+                  img.person.img-circle(src="img/testimonials/3.jpg", alt="")
+                  |                 
+                  a(title="", href="#") ALOVE COSMETICS
+                  |                 
+                  span Dallas, Texas
+            |                     
+            .item
+              .col-md-4.col-sm-6
+                .block-text.rel.zmin
+                  a(title="", href="#") CALDES DE BOI
+                  |                   
+                                     
+                  p
+                    | Las excepcionales propiedades de las aguas mineromedicinales de Caldes de Boí ahora llegan a la piel con Caldes de Boí in your skin. Una gama dermatológica mineromedicinal cuyo activo principal es el agua milenaria, rica en oligoelementos y con una mineralización especial.
+                  |                   
+                  ins.ab.zmin.sprite.sprite-i-triangle.block
+                |               
+                .person-text.rel.text-light 
+                  img.person.img-circle(src='img/testimonials/4.jpg', alt='')
+                  |                 
+                  a(title="", href="#") Lucas Thompson
+                  |                 
+                  span Austin, Texas
+              |                   
+              .col-md-4.col-sm-6.hidden-xs
+                .block-text.rel.zmin
+                  a(title="", href="#")  ALOVE COSMETICS
+                  |                   
+                                     
+                  p
+                    | nace como consecuencia de la demanda creciente de cosméticos con la mayor cantidad posible de activos e ingredientes naturales que además, sean seguros y eficaces. Su objetivo es la investigación, innovación y desarrollo de nuevas fórmulas, que permitan cubrir las necesidades del mercado farmacéutico.
+                  |                   
+                  ins.ab.zmin.sprite.sprite-i-triangle.block
+                |               
+                .person-text.rel.text-light
+                  img.person.img-circle(src='img/testimonials/2.jpg', alt='')
+                  |                     
+                  a(title="", href="#") Ella Mentree
+                  |                 
+                  span Fort Worth, Texas
+              |             
+              .col-md-4.col-sm-6.hidden-sm.hidden-xs
+                .block-text.rel.zmin
+                  a(title="", href="#") ROGGER & GALLET
+                  |                 
+                                    
+                  p
+                    | Fiel a esta filosofía, Roger&Gallet, destilador parisino, crea los rituales de belleza: perfumes con esencias preciosas destiladas e ingredientes naturales, tratamientos de bienestar con un 95% de componentes de origen natural, geles de ducha sensoriales sin sulfatos ni colorantes, jabones fabricados siguiendo el tradicional método del caldero y perfumados hasta el corazón
+                  |                   
+                  ins.ab.zmin.sprite.sprite-i-triangle.block
+                |               
+                .person-text.rel.text-light
+                  img.person.img-circle(src="img/testimonials/6.jpg", alt="")
+                  |                 
+                  a(title="", href="#") Suzanne Adam
+                  |                 
+                  span Detroit, Michigan
+          |         
+          |                 
+          a.left.carousel-control(href="#carousel-reviews", role="button", data-slide="prev")
+            span.glyphicon.glyphicon-chevron-left
+          |                 
+          a.right.carousel-control(href="#carousel-reviews", role="button", data-slide="next")
+            span.glyphicon.glyphicon-chevron-right
+  // /Section: intro
+  

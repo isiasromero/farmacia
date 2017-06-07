@@ -1,0 +1,22 @@
+extends layout
+block content
+  .container.intro-med
+    div(class='row')
+      if message.length > 0
+        div(class='alert alert-success' role='alert')= message
+      -for(var i=0; i<medicina.length; ++i){
+        .col-sm-6.item-med
+          form(action='http://localhost:8080/editar-medicina' method='post' autocomplete='off')
+            input#id_producto(type="hidden" name="id" value=medicina[i].id)
+            h4=medicina[i].nombre
+            img(src="img/#{medicina[i].imagen}", width="200")
+            p="Descripción: " + medicina[i].descripcion
+            strong="$"+medicina[i].precio
+            br
+            i="Cantidad: " + medicina[i].cantidad
+            div.container-btn
+              button.btn-edit.btn-success(type="submit")
+                span.glyphicon.glyphicon-pencil
+              a.btn-edit.btn-danger.eliminar.delete-item(href="javascript:void()")
+                span.glyphicon.glyphicon-trash
+      -}

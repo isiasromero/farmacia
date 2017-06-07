@@ -1,0 +1,30 @@
+extends layout
+block content
+  .container.intro-med
+    div(class='row')
+      div(class='col-md-6 col-md-offset-3')
+        div(class='panel panel-default')
+          div(class='header-form')= 'Editar Producto'
+          div(class='panel-body')
+            form(action='http://localhost:8080/actualizar-producto' method='post' autocomplete='off')
+              div(class='form-group')
+                label(for="producto")= 'Producto'
+                input(type="hidden" name="id" value=producto.id)
+                input(type='text' name='producto' id='producto' class='form-control' required="required" value=producto.nombre)
+              div(class='form-group')
+                label(for="descripcion")= 'Descripción'
+                input(type='text' name='descripcion' id='descripcion' class='form-control' required="required" value=producto.descripcion)
+              div(class='form-group')
+                label(for="precio")= 'Precio'
+                input(type='text' name='precio' id='precio' class='form-control' required="required" value=producto.precio)
+              div(class='form-group')
+                label(for="categoria")= 'Categoria'
+                select#categoria.form-control(name='categoria')
+                  option(value='1') Alimento y bebidas
+                  option(value='2') Aseo y hogar
+                  option(value='3') Maquillaje y accesorios
+                  option(value='4') Medicina formulada
+              div(class='form-group')
+                label(for="cantidad")= 'Cantidad'
+                input(type='number' name='cantidad' id='cantidad' class='form-control' required="required" value=producto.cantidad)
+              button.btn.btn-enviar(type="submit")= 'Actualizar'

@@ -1,0 +1,124 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title=title
+    // css
+    link(href='css/bootstrap.min.css', rel='stylesheet', type='text/css')
+    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', type='text/css', href='plugins/cubeportfolio/css/cubeportfolio.min.css')
+    link(href='css/nivo-lightbox.css', rel='stylesheet')
+    link(href='css/nivo-lightbox-theme/default/default.css', rel='stylesheet', type='text/css')
+    link(href='css/owl.carousel.css', rel='stylesheet', media='screen')
+    link(href='css/owl.theme.css', rel='stylesheet', media='screen')
+    link(href='css/animate.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
+    link(href='css/chat.css', rel='stylesheet')
+    link(href='css/estilos.css', rel='stylesheet')
+    link(href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700')
+    // boxed bg
+    link#bodybg(href='bodybg/bg1.css', rel='stylesheet', type='text/css')
+    // template skin
+    link#t-colors(href='color/default.css', rel='stylesheet')
+  body#page-top(data-spy='scroll', data-target='.navbar-custom')
+    #live-chat
+      header.clearfix
+        a.chat-close(href='#') x
+        h4 Chat en vivo
+        span.chat-message-counter 0
+      .chat.toggled
+        .chat-history
+          .chat-message.clearfix
+            ul(id="messages")
+        form.form-chat(action='', id="chatter" autocomplete='off')
+          fieldset
+          if isAuthenticated
+            input(id="m" type='text', placeholder='Escribenos un mensaje…', autofocus='' required="required")
+            input(id="u" type="hidden" value=user.nombres)
+            button.btn.btn-enviar Enviar
+          if !isAuthenticated
+            input(id="d" type='text', placeholder='Inicie sesión' disabled)
+            button.btn.btn-enviar(disabled) Enviar
+    #wrapper
+      nav.navbar.navbar-custom.navbar-fixed-top(role='navigation')
+        .top-area
+          .container
+            .row
+              .col-sm-6.col-md-6
+                p.bold.text-left lunes a viernes, 8am a 10pm
+              .col-sm-6.col-md-6
+                p.bold.text-right Telefono   034 7732629 
+        .container.navigation
+          .navbar-header.page-scroll
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-main-collapse')
+              i.fa.fa-bars
+            a.navbar-brand(href='http://localhost:8080/')
+              img(src='img/logo.png', alt='', width='150', height='40')
+          // Collect the nav links, forms, and other content for toggling
+          .collapse.navbar-collapse.navbar-right.navbar-main-collapse
+            ul.nav.navbar-nav
+              li.active
+                a(href='http://localhost:8080/') Inicio
+              li
+                a(href='http://localhost:8080/#service') Servicios
+              if (isAuthenticated && user.rol == "2") || (!isAuthenticated)
+                li.dropdown
+                  a.dropdown-toggle(href='#', data-toggle='dropdown')
+                    span.badge.custom-badge.red.pull-right
+                    | Productos
+                    b.caret
+                  ul.dropdown-menu
+                    li
+                      a(href='http://localhost:8080/alimento-y-bebidas') Alimento y bebidas
+                    li
+                      a(href='http://localhost:8080/aseo-y-hogar') Aseo y hogar
+                    li
+                      a(href='http://localhost:8080/maquillaje-y-accesorios') Maquillaje y accesorios
+                    li
+                      a(href='http://localhost:8080/medicamentos') Medicina formulada
+              if !isAuthenticated
+                li.dropdown
+                  a.dropdown-toggle(href='#', data-toggle='dropdown') Mi cuenta
+                    b.caret
+                  ul.dropdown-menu
+                    li
+                      a(href='http://localhost:8080/signin') Iniciar sesion
+                    li
+                      a(href='http://localhost:8080/signup') Registrarme
+              if (isAuthenticated && user.rol == "1")
+                li.dropdown
+                  a.dropdown-toggle(href='#', data-toggle='dropdown')
+                    span.badge.custom-badge.red.pull-right
+                    | Gestionar productos
+                    b.caret
+                  ul.dropdown-menu
+                    li
+                      a(href="http://localhost:8080/agregar-producto") Nuevo producto
+                    li
+                      a(href='http://localhost:8080/gestionar-alimento') Alimento y bebidas
+                    li
+                      a(href='http://localhost:8080/gestionar-aseo') Aseo y hogar
+                    li
+                      a(href='http://localhost:8080/gestionar-maquillaje') Maquillaje y accesorios
+                    li
+                      a(href='http://localhost:8080/gestionar-medicina') Medicina formulada
+                li
+                  a(href='http://localhost:8080/gestionar-usuarios') Gestionar usuarios
+              if isAuthenticated
+                li.dropdown
+                  a.dropdown-toggle(href='#', data-toggle='dropdown')=user.nombres
+                    b.caret
+                  ul.dropdown-menu
+                    li
+                      a(href='http://localhost:8080/logout') Cerrar sesion
+                a.cart-icon
+                  span#totalItems 0
+                  ul.cart1
+
+      block content
+
+      include footer

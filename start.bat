@@ -1,0 +1,1 @@
+set debug=farmacia2:* & npm start

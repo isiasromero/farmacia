@@ -1,0 +1,23 @@
+extends layout
+block content
+  .intro-med
+    .container
+      .row.titular
+        .col-sm-12
+          h1 ASEO Y HOGAR.
+      .row
+      -for(var i=0; i<hogar.length; ++i){
+        .col-sm-6.item-med
+          h4=hogar[i].nombre
+          img(src="img/#{hogar[i].imagen}", width="200")
+          p="Descripción: " + hogar[i].descripcion
+          strong="$"+hogar[i].precio
+          br
+          if(isAuthenticated)
+            button.producto.paypal(precio=hogar[i].precio titulo=hogar[i].nombre)="Paypal"
+            span.pading
+            button.cart(id=hogar[i].id nombre=hogar[i].nombre precio=hogar[i].precio imagen="img/"+hogar[i].imagen cantidad=hogar[i].cantidad onclick="addtoCart("+hogar[i].id+")")="Comprar"
+          if(!isAuthenticated)
+            form(action="http://localhost:8080/signin")
+              button.cart="Comprar"
+      -}

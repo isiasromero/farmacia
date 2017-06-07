@@ -1,0 +1,17 @@
+extends layout
+block content
+  .container.intro-med
+    div(class='row')
+      -for(var i=0; i<usuarios.length; ++i){
+        .col-sm-6.item-med
+          img(src="img/user.png")
+          p#id_usu=usuarios[i].id
+          p="Nombres: " + usuarios[i].nombres
+          p="Apellidos: " + usuarios[i].apellidos
+          p="Email: " + usuarios[i].email
+          p="Telefono: " + usuarios[i].telefono
+          p="Dirección: " + usuarios[i].direccion
+          div.container-btn
+            a.btn-edit.btn-danger.eliminar-usuario(href="javascript:void()")
+              span.glyphicon.glyphicon-trash
+      -}

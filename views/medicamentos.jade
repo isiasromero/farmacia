@@ -1,0 +1,23 @@
+extends layout
+block content
+  .intro-med
+    .container
+      .row.titular
+        .col-sm-12
+          h1 LISTADO DE MEDICAMENTOS.
+      .row
+      -for(var i=0; i<medicamentos.length; ++i){
+        .col-sm-6.item-med
+          h4=medicamentos[i].nombre
+          img(src="img/#{medicamentos[i].imagen}", width="200")
+          p="Descripción: " + medicamentos[i].descripcion
+          strong="$"+medicamentos[i].precio
+          br
+          if(isAuthenticated)
+            button.producto.paypal(precio=medicamentos[i].precio titulo=medicamentos[i].nombre)="Paypal"
+            span.pading
+            button.cart(id=medicamentos[i].id nombre=medicamentos[i].nombre precio=medicamentos[i].precio imagen="img/"+medicamentos[i].imagen cantidad=medicamentos[i].cantidad onclick="addtoCart("+medicamentos[i].id+")")="Comprar"
+          if(!isAuthenticated)
+            form(action="http://localhost:8080/signin")
+              button.cart="Comprar"
+      -}

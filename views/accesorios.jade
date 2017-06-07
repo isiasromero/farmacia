@@ -1,0 +1,23 @@
+extends layout
+block content
+  .intro-med
+    .container
+      .row.titular
+        .col-sm-12
+          h1 MAQUILLAJE Y ACCESORIOS.
+      .row
+      -for(var i=0; i<accesorios.length; ++i){
+        .col-sm-6.item-med
+          h4=accesorios[i].nombre
+          img(src="img/#{accesorios[i].imagen}", width="200")
+          p="Descripción: " + accesorios[i].descripcion
+          strong="$"+accesorios[i].precio
+          br
+          if(isAuthenticated)
+            button.producto.paypal(precio=accesorios[i].precio titulo=accesorios[i].nombre)="Paypal"
+            span.pading
+            button.cart(id=accesorios[i].id nombre=accesorios[i].nombre precio=accesorios[i].precio imagen="img/"+accesorios[i].imagen cantidad=accesorios[i].cantidad onclick="addtoCart("+accesorios[i].id+")")="Comprar"
+          if(!isAuthenticated)
+            form(action="http://localhost:8080/signin")
+              button.cart="Comprar"
+      -}

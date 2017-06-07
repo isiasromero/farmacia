@@ -1,0 +1,35 @@
+extends layout
+block content
+  .container.intro-med
+    div(class='row')
+      div(class='col-md-6 col-md-offset-3')
+        if message.length > 0
+          div(class='alert alert-success' role='alert')= message
+
+        div(class='panel panel-default')
+          div(class='header-form')= 'Agregar Producto'
+          div(class='panel-body')
+            form(action='http://localhost:8080/agregar-producto' method='post' autocomplete='off' enctype="multipart/form-data")
+              div(class='form-group')
+                label(for="producto")= 'Producto'
+                input(type='text' name='producto' id='producto' placeholder='Nombre del producto' class='form-control' required="required")
+              div(class='form-group')
+                label(for="descripcion")= 'Descripción'
+                input(type='text' name='descripcion' id='descripcion' placeholder='Descripcion del producto' class='form-control' required="required")
+              div(class='form-group')
+                label.custom-file(for="imagen")= 'Imagen'
+                input(type='file' name='imagen' id='imagen' class='form-control custom-file-input' required="required")
+              div(class='form-group')
+                label(for="precio")= 'Precio'
+                input(type='text' name='precio' id='precio' placeholder='Precio' class='form-control' required="required")
+              div(class='form-group')
+                label(for="categoria")= 'Categoria'
+                select#categoria.form-control(name='categoria')
+                  option(value='1') Alimento y bebidas
+                  option(value='2') Aseo y hogar
+                  option(value='3') Maquillaje y accesorios
+                  option(value='4') Medicina formulada
+              div(class='form-group')
+                label(for="cantidad")= 'Cantidad'
+                input(type='number' name='cantidad' id='cantidad' class='form-control' required="required")
+              button.btn.btn-enviar(type="submit")= 'Agregar'

@@ -1,0 +1,31 @@
+extends layout
+block content
+  .container.intro-med
+    div(class='row')
+      div(class='col-md-6 col-md-offset-3')
+        div(class='panel panel-default')
+          div(class='header-form')= 'Registrarme'
+          div(class='panel-body')
+            form(action='http://localhost:8080/signup' method='post' autocomplete='off')
+              div(class='form-group')
+                label(for="id")= 'Identificación'
+                input(type='text' name='id' id='id' placeholder='Identificación' class='form-control' required="required")
+              div(class='form-group')
+                label(for="nombres")= 'Nombres'
+                input(type='text' name='nombres' id='nombres' placeholder='Nombres' class='form-control' required="required")
+              div(class='form-group')
+                label(for="apellidos")= 'Apellidos'
+                input(type='text' name='apellidos' id='apellidos' placeholder='Apellidos' class='form-control' required="required")
+              div(class='form-group')
+                label(for="email")= 'Email'
+                input(type='email' name='email' id='email' placeholder='Email' class='form-control' required="required")
+              div(class='form-group')
+                label(for="password")= 'Password'
+                input(type='password' name='password' id='password' placeholder='Password' class='form-control' required="required")
+              div(class='form-group')
+                label(for="telefono")= 'Telefono'
+                input(type='text' name='telefono' id='telefono' placeholder='Telefono' class='form-control' required="required")
+              div(class='form-group')
+                label(for="direccion")= 'Dirección de residencia'
+                input(type='text' name='direccion' id='direccion' placeholder='Dirección de residencia' class='form-control' required="required")
+              button.btn.btn-enviar(type="submit")= 'Registrarme'

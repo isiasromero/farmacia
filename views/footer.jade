@@ -1,0 +1,341 @@
+footer
+  .container
+    .row
+      .col-sm-6.col-md-4
+        .wow.fadeInDown(data-wow-delay='0.1s')
+          .widget
+            h5 acerca de  drogeria SuperFamilia
+            p
+            
+        .wow.fadeInDown(data-wow-delay='0.1s')
+          .widget
+            h5 Informacion
+            ul
+              li
+                a(href='#') Inicio
+              li
+                a(href='#') Laboratorios
+              li
+                a(href='#') Terminos & condiciones
+      .col-sm-6.col-md-4
+        .wow.fadeInDown(data-wow-delay='0.1s')
+          .widget
+            h5 Sucursales
+            p
+              | principales ciudades como: Bogota Monteria Medellin Barranquilla ..
+            ul
+              li
+                span.fa-stack.fa-lg
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-calendar-o.fa-stack-1x.fa-inverse
+                |  lunes - viernes, 8am a 10pm
+              li
+                span.fa-stack.fa-lg
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-phone.fa-stack-1x.fa-inverse
+                |  3014028551 -  0347732629 - 3182246250
+              li
+                span.fa-stack.fa-lg
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-envelope-o.fa-stack-1x.fa-inverse
+                |  Superfamilia@gmail.com
+      .col-sm-6.col-md-4
+        .wow.fadeInDown(data-wow-delay='0.1s')
+          .widget
+            h5 Direccion
+            p Calle 4A #24-07 entrada principal lorica- cordoba
+        .wow.fadeInDown(data-wow-delay='0.1s')
+          .widget
+            h5 Compatir
+            ul.company-social
+              li.social-facebook
+                a(href='#')
+                  i.fa.fa-facebook
+              li.social-twitter
+                a(href='#')
+                  i.fa.fa-twitter
+              li.social-google
+                a(href='#')
+                  i.fa.fa-google-plus
+              li.social-vimeo
+                a(href='#')
+                  i.fa.fa-vimeo-square
+              li.social-dribble
+                a(href='#')
+                  i.fa.fa-dribbble
+  .sub-footer
+    .container
+      .row
+        .col-sm-6.col-md-6.col-lg-6
+          .wow.fadeInLeft(data-wow-delay='0.1s')
+            .text-left
+              p ©Copyright - SuperFamilia - 2017 - Desing by
+                a(href='#') BitKlan
+
+//a.scrollup(href='#')
+//i.fa.fa-angle-up.active
+// Core JavaScript Files
+script(src='js/jquery.min.js')
+script(src='js/bootstrap.min.js')
+script(src='js/jquery.easing.min.js')
+script(src='js/wow.min.js')
+script(src='js/jquery.scrollTo.js')
+script(src='js/jquery.appear.js')
+script(src='js/stellar.js')
+script(src='plugins/cubeportfolio/js/jquery.cubeportfolio.min.js')
+script(src='js/owl.carousel.min.js')
+script(src='js/nivo-lightbox.min.js')
+script(src='js/custom.js')
+script(src='js/chat.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.2.0/socket.io.js')
+script(src="https://use.fontawesome.com/7f08727939.js")
+script(src="js/minicart.min.js")
+script(src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js')
+script(src="js/jspdf.min.js")
+
+script(type='text/javascript').
+  var socket = io.connect("http://localhost:3000");
+  var cuantosLi = 0;
+  var audio = new Audio('audio/mensaje.mp3');
+  $('.form-chat').submit(function(){
+    socket.emit('chat message', $('#u').val() + ": " + $('#m').val());
+    $('#m').val('');
+    return false;
+  });
+
+  socket.on('chat message', function(msg){
+    $('#messages').append($('<li>').text(msg));
+    contarMensajes();
+    sonido();
+  });
+
+  function contarMensajes(){
+    cuantosLi = 0;
+    jQuery("#messages li").each(function(index){
+      cuantosLi += 1;
+    });
+    $('.chat-message-counter').text(cuantosLi);
+  }
+
+  function sonido(){
+      audio.play();
+  }
+
+script(type='text/javascript').
+  paypal.minicart.render({
+    strings:{
+      button:'Pagar'
+     ,buttonAlt: "Total"
+     ,subtotal: 'Total:'
+     ,empty: 'No hay productos en el carrito'
+    }
+  });
+
+  $('.producto').click(function(e){
+    e.stopPropagation();
+    paypal.minicart.cart.add({
+      business: 'dramos.cuello@gmail.com',
+      item_name: $(this).attr("titulo"),
+      amount: $(this).attr("precio"),
+      currency_code: 'COP',
+    });
+  });
+
+script(type='text/javascript').
+  $(function(){
+    $('.delete-item').click(function(e){
+      e.preventDefault();
+      var elemento =$(this);
+      var id= elemento.parent().parent().find('#id_producto').val();
+      var confirmar = confirm('¿Está seguro de eliminar este producto?');
+     	if(confirmar){
+     		$.ajax({
+       	 	url:'http://localhost:8080/eliminar-producto',
+       	 	method: 'post',
+       	 	data : {id : id},
+       	 	success : function(res){
+       	 		console.log(res);
+       	 		if(res.res){
+       	 			elemento.parent().parent().remove();
+       	 		}
+       	 	}
+     	  });
+     	}
+    });
+  });
+
+script(type='text/javascript').
+  $(function(){
+    $('.eliminar-usuario').click(function(e){
+      e.preventDefault();
+      var elemento =$(this);
+      var id= elemento.parent().parent().find('#id_usu').text();
+      var confirmar = confirm('¿Está seguro de eliminar este usuario?');
+     	if(confirmar){
+     		$.ajax({
+       	 	url:'http://localhost:8080/eliminar-usuario',
+       	 	method: 'post',
+       	 	data : {id : id},
+       	 	success : function(res){
+       	 		console.log(res);
+       	 		if(res.res){
+       	 			elemento.parent().parent().remove();
+       	 		}
+       	 	}
+     	  });
+     	}
+    });
+  });
+
+
+
+
+
+//AQUI COMIENZA LA PARTE DE LOCALSTORAGE Y CARRITO DE COMPRAS
+script(type='text/javascript').
+  var ttotal = 0;
+  init = function(){//Es la función principal, se encarga de verificar que hayan productos en la canasta de compra
+    var total = 0;
+    var items = 0;
+    var cart = (JSON.parse(localStorage.getItem('cart')) != null) ? JSON.parse(localStorage.getItem('cart')) : {items : []} ;
+    if(undefined != cart.items && cart.items != null && cart.items != '' && cart.items.length > 0){
+      _.forEach(cart.items, function(n, key) {
+        items = (items + n.cant);
+        total = total  + (n.cant * n.price);
+      });
+    }
+    $('#totalItems').text(items);
+    ttotal = total;
+  }
+
+  addtoCart = function(id){//Añade un producto a la canasta de compra
+    var elemento = document.getElementById(id);
+    var nombre = elemento.getAttribute('nombre');
+    var precio = elemento.getAttribute('precio');
+    var imagen = elemento.getAttribute('imagen');
+    var cantidad = elemento.getAttribute('cantidad');
+    //alert(nombre + ' ' + precio + ' ' + imagen + ' ' + cantidad);
+    var cant = 1;
+    if(cant <= parseInt(cantidad)){
+      if(cant > 0){
+        var cart = (JSON.parse(localStorage.getItem('cart')) != null) ? JSON.parse(localStorage.getItem('cart')) : {items : []} ;
+        searchProd(cart, id, parseInt(cant), nombre, precio, imagen, cantidad);
+      }else{
+        alert('Solo se permiten cantidades mayores a cero');
+      }
+    }else{
+      alert('No se pueden añadir más de este producto');
+    }
+  }
+
+  searchProd = function(cart,id,cant,name,price,img,available){//Busca un producto dentro de la canasta y verifica las cantidades para no sobrepasar las existentes en stock.
+    var curProd = _.find(cart.items, { 'id': id });
+    if(undefined != curProd && curProd != null){
+      if(curProd.cant < available){
+        curProd.cant = parseInt(curProd.cant + cant)
+      }else{
+        alert('No se pueden añadir más de este producto')
+      }
+    }else{
+      var prod = {
+      id : id,
+      cant : cant,
+      name : name,
+      price : price,
+      img : img,
+      available : available
+      }
+      cart.items.push(prod);
+    }
+    localStorage.setItem('cart',JSON.stringify(cart));
+    init();
+    getProducts();
+  }
+
+  getProducts = function(){//Es la encargada de actualizar la canasta de compra, cada vez que se agrega, edita o elimina un registro de la canasta.
+    var cart = (JSON.parse(localStorage.getItem('cart')) != null) ? JSON.parse(localStorage.getItem('cart')) : {items : []};
+    var msg = '';
+    var wrapper = $('.cart1');
+    var total = 0;
+    wrapper.html('');
+  
+    if(undefined == cart || null == cart || cart == '' || cart.items.length == 0){
+
+      wrapper.html('<li>Tu canasta está vacía </li> ');
+    
+    }else{
+      var items = '';
+
+  items += '<div class="container-fluid">';
+      _.forEach(cart.items, function(n, key) {
+        total = total  + (n.cant * n.price);
+        items += ' <div class="" >  X</div> <div ><li>';
+       // items += '<div><img class="img-circle" src="'+n.img+'" />';
+        items += '<h10 style="font-size: x-small">' + n.name +'-' +n.cant+ ' x $ '+n.price+' COP   </h10>  ';
+        items += '</div></li><button  class="btn-danger btn-small" title="eliminar" onclick="deleteProd('+n.id+')" ><span class="glyphicon glyphicon-remove-circle"></span> </button><br><hr>';
+      });
+
+
+      items += '<li id="total"> Total : $ '+total+' COP </li>'+
+      '<br><hr><button class="pay btn btn-success btn-lg " onclick="generarpdf()">  <span class="glyphicon glyphicon-usd"></span>  Pagar &nbsp;</button><br></div>';
+      wrapper.html(items+='</div>');
+      $('.cart1').css('left','-500%');
+    }
+  }
+
+  deleteP = function(id){//Función encargada de eliminar un producto definitivamente de la canasta (recibe un parámetro boleano, para que no salte la ventana de confirmación)
+    var cart = (JSON.parse(localStorage.getItem('cart')) != null) ? JSON.parse(localStorage.getItem('cart')) : {items : []} ;
+    var curProd = _.find(cart.items, { 'id': id });
+    _.remove(cart.items, curProd);
+    localStorage.setItem('cart',JSON.stringify(cart));
+    init();
+    getProducts();
+  }
+
+  deleteProd = function(id,remove){//Nos permite eliminar un producto de manera definitiva de la canasta
+    if(undefined != id && id > 0){
+      if(remove == true){
+        deleteP(id)
+      }else{
+        var conf = confirm('¿Deseas eliminar este producto?')
+        if(conf){
+          deleteP(id)
+        }
+      }
+    }
+  }
+
+  function generarpdf(){//Aqui se genera el pdf
+    var line = 10;
+    var doc = new jsPDF();
+    var cart = (JSON.parse(localStorage.getItem('cart')) != null) ? JSON.parse(localStorage.getItem('cart')) : {items : []} ;
+    if( localStorage.getItem('cart')) {
+      var i =50;
+      _.forEach(cart.items, function(prod, key) {
+        i +=4;
+        doc.setFontSize(10);
+        doc.text(20, i, prod.name + ' Cantidad ' +  prod.cant +  ' Valor unitario $' + prod.price  );
+        i++;
+
+      });
+      doc.setFontSize(15);
+      doc.text(45, 22, 'FACTURA DE COMPRA EN SUPER FAMILIA' ,{ align: 'center' });
+      doc.setFontSize(10)
+      doc.text(70, 30, 'Orden de compra ' + Math.random() ,{ align: 'center' });
+      doc.setFontSize(12);
+      doc.text(20,  i+20, '_____________________________');
+      doc.text(20,  i+19, 'Total a pagar : $' + String(ttotal) + '  PESOS');//este total esta en la funcion init
+      doc.save('factura.pdf');
+      localStorage.removeItem('cart');
+      localStorage.removeItem('PPMiniCart');
+    }else{
+    alert('No hay productos en la cesta');
+    }
+     
+
+  }
+
+  $(document).ready(function(){
+    init();
+    getProducts();
+  })

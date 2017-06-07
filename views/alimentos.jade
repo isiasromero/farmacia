@@ -1,0 +1,23 @@
+extends layout
+block content
+  .intro-med
+    .container
+      .row.titular
+        .col-sm-12
+          h1 ALIMENTOS Y BEBIDAS.
+      .row
+      -for(var i=0; i<alimentos.length; ++i){
+        .col-sm-6.item-med
+          h4=alimentos[i].nombre
+          img(src="img/#{alimentos[i].imagen}", width="200")
+          p="Descripción: " + alimentos[i].descripcion
+          strong="$"+alimentos[i].precio
+          br
+          if(isAuthenticated)
+            button.producto.paypal(precio=alimentos[i].precio titulo=alimentos[i].nombre)="Paypal"
+            span.pading
+            button.cart(id=alimentos[i].id nombre=alimentos[i].nombre precio=alimentos[i].precio imagen="img/"+alimentos[i].imagen cantidad=alimentos[i].cantidad onclick="addtoCart("+alimentos[i].id+")")="Comprar"
+          if(!isAuthenticated)
+            form(action="http://localhost:8080/signin")
+              button.cart="Comprar"
+      -}

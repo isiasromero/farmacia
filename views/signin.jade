@@ -1,0 +1,20 @@
+extends layout
+block content
+  .container.intro-med
+    div(class='row')
+      div(class='col-md-6 col-md-offset-3')
+
+        if message.length > 0
+          div(class='alert alert-success' role='alert')= message
+
+        div(class='panel panel-default')
+          div(class='header-form')= 'Iniciar Sesion'
+          div(class='panel-body')
+            form(action='http://localhost:8080/signin' method='post' autocomplete='off')
+              div(class='form-group')
+                label(for="email")= 'Email'
+                input(type='text' name='username' placeholder='Email' class='form-control' required="required")
+              div(class='form-group')
+                label(for="password")= 'Password'
+                input(type='password' name='password' placeholder='Password' class='form-control' required="required")
+              button.btn.btn-enviar(type="submit")= 'Iniciar Sesion'
